@@ -5,23 +5,22 @@ import './App.css';
 export default function App() {
   const [todos, setTodos] = useState([]);
   const [completedTodos, setCompletedTodos] = useState([]);
-  const [addMsg, setAddMsg] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const todoList = [
-    // {
-    //   title: 'Walk the dog',
-    //   completed: false
-    // },
-    // {
-    //   title: 'Learn React',
-    //   completed: false
-    // },
-    // {
-    //   title: 'Read a book',
-    //   completed: false
-    // }
+    {
+      title: 'Walk the dog',
+      completed: false
+    },
+    {
+      title: 'Learn React',
+      completed: false
+    },
+    {
+      title: 'Read a book',
+      completed: false
+    }
   ];
 
   useEffect(() => {
@@ -59,6 +58,13 @@ export default function App() {
     newTodos.splice(currentIndex, 1); // splice (cut) the index that matches the one we want to delete
     setTodos(newTodos); // set new state of todos
   }
+  
+  function handleDeleteIncompleteTodo(currentIndex) {
+    const newCompletedTodos = [...completedTodos]; // make a new iterable copy of todos
+
+    newCompletedTodos.splice(currentIndex, 1); // splice (cut) the index that matches the one we want to delete
+    setCompletedTodos(newCompletedTodos); // set new state of todos
+  }
 
   function handleDeleteCompletedTodo(currentIndex) {
     const newCompletedTodos = [...completedTodos]; // make a new iterable copy of todos
@@ -75,18 +81,19 @@ export default function App() {
     newCompletedTodos.push(newTodos[currentIndex]);
     setTodos(newTodos);
     setCompletedTodos(newCompletedTodos);
-    handleDeleteTodo(currentIndex, 'todo'); // Delete the current todo
+    handleDeleteTodo(currentIndex); // Delete the current todo
   }
 
   function handleIncompleteTodo(currentIndex) {
     const newCompletedTodos = [...completedTodos]; // Make a iterable copy of current completed todos
     const newTodos = [...todos]; // Make a iterable copy of current todos
+    const currentCompletedTodo = newCompletedTodos[currentIndex];
     
-    newCompletedTodos[currentIndex].completed = false; // switch completed val to false
-    newTodos.push(newCompletedTodos[currentIndex]);
+    currentCompletedTodo.completed = false; // switch completed val to false
+    newTodos.push(currentCompletedTodo);
     setTodos(newTodos);
     setCompletedTodos(newCompletedTodos);
-    handleDeleteTodo(currentIndex, 'completed'); // Delete the current todo
+    handleDeleteIncompleteTodo(currentIndex); // Delete the current todo
   }
 
   return (
