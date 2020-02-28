@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react';
+// import TodoItem from './components/TodoItem';
 import './App.css';
 
 export default function App() {
   const [todos, setTodos] = useState([]);
   const [completedTodos, setCompletedTodos] = useState([]);
+  const [addMsg, setAddMsg] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const todoList = [
-    {
-      title: 'Walk the dog',
-      completed: false
-    },
-    {
-      title: 'Learn React',
-      completed: false
-    },
-    {
-      title: 'Read a book',
-      completed: true
-    }
+    // {
+    //   title: 'Walk the dog',
+    //   completed: false
+    // },
+    // {
+    //   title: 'Learn React',
+    //   completed: false
+    // },
+    // {
+    //   title: 'Read a book',
+    //   completed: false
+    // }
   ];
 
   useEffect(() => {
@@ -51,31 +53,26 @@ export default function App() {
     addTodoInput.value = '';
   }
 
-  function handleDeleteTodo(currentIndex, type) {
-    switch (type) {
-      case 'todo':
-        const newTodos = [...todos]; // make a new iterable copy of todos
+  function handleDeleteTodo(currentIndex) {
+    const newTodos = [...todos]; // make a new iterable copy of todos
 
-        newTodos.splice(currentIndex, 1); // splice (cut) the index that matches the one we want to delete
-        setTodos(newTodos); // set new state of todos
-        break;
+    newTodos.splice(currentIndex, 1); // splice (cut) the index that matches the one we want to delete
+    setTodos(newTodos); // set new state of todos
+  }
 
-      case 'completed':
-        const newCompletedTodos = [...completedTodos]; // make a new iterable copy of todos
+  function handleDeleteCompletedTodo(currentIndex) {
+    const newCompletedTodos = [...completedTodos]; // make a new iterable copy of todos
 
-        newCompletedTodos.splice(currentIndex, 1); // splice (cut) the index that matches the one we want to delete
-        setCompletedTodos(newCompletedTodos); // set new state of todos
-        break;
-    }
+    newCompletedTodos.splice(currentIndex, 1); // splice (cut) the index that matches the one we want to delete
+    setCompletedTodos(newCompletedTodos); // set new state of todos
   }
 
   function handleCompleteTodo(currentIndex) {
     const newTodos = [...todos]; // Make a iterable copy of current todos
     const newCompletedTodos = [...completedTodos]; // Make a iterable copy of current completed todos
+
     newTodos[currentIndex].completed = true;
     newCompletedTodos.push(newTodos[currentIndex]);
-    
-
     setTodos(newTodos);
     setCompletedTodos(newCompletedTodos);
     handleDeleteTodo(currentIndex, 'todo'); // Delete the current todo
@@ -84,10 +81,9 @@ export default function App() {
   function handleIncompleteTodo(currentIndex) {
     const newCompletedTodos = [...completedTodos]; // Make a iterable copy of current completed todos
     const newTodos = [...todos]; // Make a iterable copy of current todos
-    newCompletedTodos[currentIndex].completed = false;
-    newTodos.push(newCompletedTodos[currentIndex]);
     
-
+    newCompletedTodos[currentIndex].completed = false; // switch completed val to false
+    newTodos.push(newCompletedTodos[currentIndex]);
     setTodos(newTodos);
     setCompletedTodos(newCompletedTodos);
     handleDeleteTodo(currentIndex, 'completed'); // Delete the current todo
@@ -95,7 +91,7 @@ export default function App() {
 
   return (
     <>
-      {/* If truthy, then return something */}
+      {/* Short-circuit assignment to handle displaying error message */}
       {isError && <p>Something went wrong</p>}
 
       {isLoading ? (
@@ -103,8 +99,11 @@ export default function App() {
       ) : (
         <>
           <form onSubmit={handleAddTodo}>
-            <label>Add todos:</label> <input type="text" /> <button type="submit">Add</button>
+            <label>Add a todo:</label> <input type="text" /> <button type="submit">Add</button>
           </form>
+
+          {todos.length === 0 && 'You must not be busy. Add some todos!'}
+
           <ul>
             {todos.map((todo, index) => (
               <li key={index}>
@@ -114,16 +113,21 @@ export default function App() {
               </li>
             ))}
           </ul>
-          <p>Completed</p>
-          <ul>
-            {completedTodos.map((todo, index) => (
-              <li key={index}>
-                <input type="checkbox" onChange={() => handleIncompleteTodo(index)} checked />
-                <strike>{todo.title}</strike>
-                <button onClick={() => handleDeleteTodo(index, 'completed')}>delete</button>
-              </li>
-            ))}
-          </ul>
+          
+          {completedTodos.length > 0 && (
+            <>
+              <p>Completed</p>
+              <ul>
+                {completedTodos.map((todo, index) => (
+                  <li key={index}>
+                    <input type="checkbox" onChange={() => handleIncompleteTodo(index)} checked />
+                    <strike>{todo.title}</strike>
+                    <button onClick={() => handleDeleteCompletedTodo(index)}>delete</button>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </>
       )}
     </>
