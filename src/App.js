@@ -43,13 +43,17 @@ export default function App() {
   }, []);
 
   function handleAddTodo(e) {
-    e.preventDefault();
-    const addTodoInput = e.target.querySelector('input'); // Get the value to prep for adding new todo
-    const newTodos = [...todos]; // Make a iterable copy of current todos
+    const addTodoInput = e.target.querySelector('input'); // Get the input, so we can get the value later
 
-    newTodos.push({title: addTodoInput.value, completed: false});
-    setTodos(newTodos);
-    addTodoInput.value = '';
+    e.preventDefault();
+    
+    if (!addTodoInput.value) {
+      const newTodos = [...todos]; // Make a iterable copy of current todos
+
+      newTodos.unshift({title: addTodoInput.value, completed: false});
+      setTodos(newTodos);
+      addTodoInput.value = '';
+    }
   }
 
   function handleDeleteTodo(currentIndex) {
@@ -77,8 +81,8 @@ export default function App() {
     const newTodos = [...todos]; // Make a iterable copy of current todos
     const newCompletedTodos = [...completedTodos]; // Make a iterable copy of current completed todos
 
-    newTodos[currentIndex].completed = true;
-    newCompletedTodos.push(newTodos[currentIndex]);
+    newTodos[currentIndex].completed = true; // Get current todo in the new list, and set completed state
+    newCompletedTodos.push(newTodos[currentIndex]); // Push the current to do and add it to new completed todos
     setTodos(newTodos);
     setCompletedTodos(newCompletedTodos);
     handleDeleteTodo(currentIndex); // Delete the current todo
@@ -98,7 +102,7 @@ export default function App() {
 
   return (
     <>
-      {/* Short-circuit assignment to handle displaying error message */}
+      {/* Short-circuit logical assignment to handle displaying error message */}
       {isError && <p>Something went wrong</p>}
 
       {isLoading ? (
@@ -106,9 +110,11 @@ export default function App() {
       ) : (
         <>
           <form onSubmit={handleAddTodo}>
-            <label>Add a todo:</label> <input type="text" /> <button type="submit">Add</button>
+            <label>Add a todo:</label>
+            <input type="text" /> <button type="submit">Add</button>
           </form>
 
+          {/* Displays if you have zero todos */}
           {todos.length === 0 && 'You must not be busy. Add some todos!'}
 
           <ul>
