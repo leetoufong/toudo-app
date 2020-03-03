@@ -1,35 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-export default function TodoItem() {
-  const [isEditMode, setIsEditMode] = useState(false);
+export default function TodoItem(props) {
+  const {todos} = props;
 
-  function handleCompleteTodo() {
-    
-  }
-
-  function handleDeleteTodo() {
-
-  }
-
-  function handleEditTodo(e) {
-    if (!isEditMode) {
-      setIsEditMode(true);
-    } else {
-
-      setIsEditMode(false);
-    }
+  function handleDelete(itemIndex) {
+    console.log('Deleting: ', itemIndex);
   }
 
   return (
-    <li>
-      <input type="checkbox" onChange={() => handleCompleteTodo()} />
-      {isEditMode ? (
-        <input value="Test edit mode" />
-      ) : (
-        'Test'
-      )}
-      <button onClick={handleEditTodo}>{!isEditMode ? 'edit' : 'save'}</button>
-      <button onClick={() => handleDeleteTodo()}>delete</button>
-    </li>
+    <>
+      {todos.map((todo, index) => (
+        <li key={index}>
+          <input type="checkbox" />
+          {todo.title}
+          <button onClick={() => handleDelete(index)}>delete</button>
+        </li>
+      ))}
+    </>
   )
 }
