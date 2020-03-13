@@ -42,63 +42,63 @@ export default function App() {
     fetchData();
   }, []);
 
-  function handleAddTodo(e) {
-    const addTodoInput = e.target.querySelector('input'); // Get the input, so we can get the value later
+  function handleAddTodo(event) {
+    const input = event.target.querySelector('input'); // Get the input, so we can get the value later
 
-    e.preventDefault();
+    event.preventDefault();
     
-    if (!addTodoInput.value) {
+    if (input.value.length > 0) {
       const newTodos = [...todos]; // Make a iterable copy of current todos
 
-      newTodos.unshift({title: addTodoInput.value, completed: false});
+      newTodos.unshift({title: input.value, completed: false});
       setTodos(newTodos);
-      addTodoInput.value = '';
+      input.value = '';
     }
   }
 
-  function handleDeleteTodo(currentIndex) {
+  function handleDeleteTodo(index) {
     const newTodos = [...todos]; // make a new iterable copy of todos
 
-    newTodos.splice(currentIndex, 1); // splice (cut) the index that matches the one we want to delete
+    newTodos.splice(index, 1); // splice (cut) the index that matches the one we want to delete
     setTodos(newTodos); // set new state of todos
   }
   
-  function handleDeleteIncompleteTodo(currentIndex) {
-    const newCompletedTodos = [...completedTodos]; // make a new iterable copy of todos
+  // function handleDeleteIncompleteTodo(index) {
+  //   const newCompletedTodos = [...completedTodos]; // make a new iterable copy of todos
 
-    newCompletedTodos.splice(currentIndex, 1); // splice (cut) the index that matches the one we want to delete
-    setCompletedTodos(newCompletedTodos); // set new state of todos
-  }
+  //   newCompletedTodos.splice(index, 1); // splice (cut) the index that matches the one we want to delete
+  //   setCompletedTodos(newCompletedTodos); // set new state of todos
+  // }
 
-  function handleDeleteCompletedTodo(currentIndex) {
-    const newCompletedTodos = [...completedTodos]; // make a new iterable copy of todos
+  // function handleDeleteCompletedTodo(index) {
+  //   const newCompletedTodos = [...completedTodos]; // make a new iterable copy of todos
 
-    newCompletedTodos.splice(currentIndex, 1); // splice (cut) the index that matches the one we want to delete
-    setCompletedTodos(newCompletedTodos); // set new state of todos
-  }
+  //   newCompletedTodos.splice(index, 1); // splice (cut) the index that matches the one we want to delete
+  //   setCompletedTodos(newCompletedTodos); // set new state of todos
+  // }
 
-  function handleCompleteTodo(currentIndex) {
+  function handleCompleteTodo(index) {
     const newTodos = [...todos]; // Make a iterable copy of current todos
     const newCompletedTodos = [...completedTodos]; // Make a iterable copy of current completed todos
 
-    newTodos[currentIndex].completed = true; // Get current todo in the new list, and set completed state
-    newCompletedTodos.push(newTodos[currentIndex]); // Push the current to do and add it to new completed todos
+    newTodos[index].completed = true; // Get current todo in the new list, and set completed state
+    newCompletedTodos.push(newTodos[index]); // Push the current to do and add it to new completed todos
     setTodos(newTodos);
     setCompletedTodos(newCompletedTodos);
-    handleDeleteTodo(currentIndex); // Delete the current todo
+    handleDeleteTodo(index); // Delete the current todo
   }
 
-  function handleIncompleteTodo(currentIndex) {
-    const newCompletedTodos = [...completedTodos]; // Make a iterable copy of current completed todos
-    const newTodos = [...todos]; // Make a iterable copy of current todos
-    const currentCompletedTodo = newCompletedTodos[currentIndex];
+  // function handleIncompleteTodo(index) {
+  //   const newCompletedTodos = [...completedTodos]; // Make a iterable copy of current completed todos
+  //   const newTodos = [...todos]; // Make a iterable copy of current todos
+  //   const currentCompletedTodo = newCompletedTodos[index];
     
-    currentCompletedTodo.completed = false; // switch completed val to false
-    newTodos.push(currentCompletedTodo);
-    setTodos(newTodos);
-    setCompletedTodos(newCompletedTodos);
-    handleDeleteIncompleteTodo(currentIndex); // Delete the current todo
-  }
+  //   currentCompletedTodo.completed = false; // switch completed val to false
+  //   newTodos.push(currentCompletedTodo);
+  //   setTodos(newTodos);
+  //   setCompletedTodos(newCompletedTodos);
+  //   handleDeleteIncompleteTodo(index); // Delete the current todo
+  // }
 
   return (
     <>
@@ -120,14 +120,14 @@ export default function App() {
           <ul>
             {todos.map((todo, index) => (
               <li key={index}>
-                <input type="checkbox" onChange={() => handleCompleteTodo(index)} />
+                {/* <input type="checkbox" onChange={() => handleCompleteTodo(index)} /> */}
                 {todo.title}
                 <button onClick={() => handleDeleteTodo(index, 'todo')}>delete</button>
               </li>
             ))}
           </ul>
           
-          {completedTodos.length > 0 && (
+          {/* {completedTodos.length > 0 && (
             <>
               <p>Completed</p>
               <ul>
@@ -140,7 +140,7 @@ export default function App() {
                 ))}
               </ul>
             </>
-          )}
+          )} */}
         </>
       )}
     </>
