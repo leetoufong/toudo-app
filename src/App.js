@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TodoItem from './components/TodoItem';
 import AddTodo from './components/AddTodo';
-import './App.css';
+import './App.scss';
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -87,7 +87,7 @@ export default function App() {
             'You must not be busy. Add some todos!'
           ) : (
             <>
-              <p>Current Todos</p>
+              {/* <p>Current Todos</p> */}
               <ul>
                 {todos.map((todo, index) => (
                   <TodoItem key={index} title={todo.title} completed={todo.completed} action={deleteTodo} />

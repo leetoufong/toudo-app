@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function AddTodo(props) {
-  const {action} = props;
+  const {action} = props; // destructuring for easier handling
 
   function handleAddTodo(event) {
     action(event);
