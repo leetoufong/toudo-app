@@ -29,7 +29,8 @@ export default function App() {
       setIsLoading(true);
       try {
         const response = await todoList;
-        const newTodos = response.filter(todo => !todo.completed);
+        // const newTodos = response.filter(todo => !todo.completed);
+        const newTodos = response;
         const newCompletedTodos = response.filter(todo => todo.completed);
 
         setTodos(newTodos);
@@ -51,23 +52,17 @@ export default function App() {
     if (input.value.length > 0) {
       const newTodos = [...todos]; // Spread operator to make iteratable copy
 
-      newTodos.unshift({title: input.value, completed: false});
+      newTodos.push({title: input.value, completed: false});
       setTodos(newTodos);
       input.value = '';
     }
   }
 
-  function deleteTodo(index, completed) {
-    if (!completed) {
-      const newTodos = [...todos];
-      newTodos.splice(index, 1);
-      setTodos(newTodos);
-    } else {
-      const newCompletedTodos = [...completedTodos];
-      newCompletedTodos.splice(index, 1);
-      setCompletedTodos(newCompletedTodos);
-    }
-    
+  function handleDeleteTodo(index) {
+    const newTodos = [...todos];
+
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
   }
 
   return (
@@ -90,19 +85,7 @@ export default function App() {
               {/* <p>Current Todos</p> */}
               <ul>
                 {todos.map((todo, index) => (
-                  <TodoItem key={index} title={todo.title} completed={todo.completed} action={deleteTodo} />
-                ))}
-              </ul>
-            </>
-          )}
-
-          {/* Display message if you have no todos */}
-          {completedTodos.length > 0 && (
-            <>
-              <p>Completed Todos</p>
-              <ul>
-                {completedTodos.map((todo, index) => (
-                  <strike><TodoItem key={index} title={todo.title} completed={todo.completed} action={deleteTodo} /></strike>
+                  <TodoItem key={index} index={index} title={todo.title} completed={todo.completed} onClick={handleDeleteTodo} />
                 ))}
               </ul>
             </>
