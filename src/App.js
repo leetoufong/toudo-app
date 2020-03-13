@@ -20,7 +20,7 @@ export default function App() {
     },
     {
       title: 'Read a book',
-      completed: false
+      completed: true
     }
   ];
 
@@ -49,7 +49,7 @@ export default function App() {
     event.preventDefault();
     
     if (input.value.length > 0) {
-      const newTodos = [...todos]; // Make a iterable copy of current todos
+      const newTodos = [...todos]; // Spread operator to make iteratable copy
 
       newTodos.unshift({title: input.value, completed: false});
       setTodos(newTodos);
@@ -97,7 +97,7 @@ export default function App() {
           )}
 
           {/* Display message if you have no todos */}
-          {/* {completedTodos.length > 0 && (
+          {completedTodos.length > 0 && (
             <>
               <p>Completed Todos</p>
               <ul>
@@ -106,7 +106,7 @@ export default function App() {
                 ))}
               </ul>
             </>
-          )} */}
+          )}
 
         </>
       )}
