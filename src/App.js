@@ -6,6 +6,7 @@ import './App.scss';
 export default function App() {
   const [todos, setTodos] = useState([]);
   const [completedTodos, setCompletedTodos] = useState([]);
+  const [isAddError, setIsAddError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -20,17 +21,23 @@ export default function App() {
     },
     {
       title: 'Read a book',
-      completed: true
+      completed: false
     }
   ];
+
+  const messages = [
+    'You must not be busy. Add some todos',
+    'Ummm, yeah. Find something todo.',
+    'Free time is expensive. Add something.',
+    'Do stuff. It\'s healthy.'
+  ]
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
         const response = await todoList;
-        // const newTodos = response.filter(todo => !todo.completed);
-        const newTodos = response;
+        const newTodos = response.filter(todo => !todo.completed);
         const newCompletedTodos = response.filter(todo => todo.completed);
 
         setTodos(newTodos);
@@ -52,9 +59,17 @@ export default function App() {
     if (input.value.length > 0) {
       const newTodos = [...todos]; // Spread operator to make iteratable copy
 
+      if (input.classList.contains('error')) {
+        input.classList.remove('error');
+        setIsAddError(false);
+      }
       newTodos.push({title: input.value, completed: false});
       setTodos(newTodos);
       input.value = '';
+    } else {
+      input.classList.add('error');
+      input.focus();
+      setIsAddError(true);
     }
   }
 
@@ -66,7 +81,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <div className="App">
       {/* Error display */}
       {isError && <p>Something went wrong</p>}
 
@@ -75,15 +90,15 @@ export default function App() {
         <p>Loading...</p>
       ) : (
         <>
-          <AddTodo action={handleAddTodo} />
+          <AddTodo error={isAddError} action={handleAddTodo} />
 
           {/* Display message if you have no todos */}
           {todos.length === 0 ? (
-            'You must not be busy. Add some todos!'
+            messages[Math.floor(Math.random() * messages.length)]
           ) : (
             <>
               {/* <p>Current Todos</p> */}
-              <ul>
+              <ul className="list-unstyled">
                 {todos.map((todo, index) => (
                   <TodoItem key={index} index={index} title={todo.title} completed={todo.completed} onClick={handleDeleteTodo} />
                 ))}
@@ -93,6 +108,6 @@ export default function App() {
 
         </>
       )}
-    </>
+    </div>
   )
 }

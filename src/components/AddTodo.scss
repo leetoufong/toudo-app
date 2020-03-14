@@ -1,0 +1,9 @@
+@import '../scss/variables.scss';
+
+.AddTodo {
+  margin-bottom: 3rem;
+}
+
+.error {
+  outline: 1px solid $carrot;
+}
