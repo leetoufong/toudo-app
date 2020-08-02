@@ -16,12 +16,12 @@ export default function App() {
       completed: false
     },
     {
-      title: 'Eat tacos',
+      title: 'Take out trash',
       completed: false
     },
     {
       title: 'Read a book',
-      completed: false
+      completed: true
     }
   ];
 
@@ -54,7 +54,7 @@ export default function App() {
   function handleAddTodo(event) {
     const input = event.target.querySelector('input'); // Get the input, so we can get the value later
 
-    event.preventDefault();
+    event.preventDefault(); //prevent the form from submitting
     
     if (input.value.length > 0) {
       const newTodos = [...todos]; // Spread operator to make iteratable copy
@@ -71,6 +71,13 @@ export default function App() {
       input.focus();
       setIsAddError(true);
     }
+  }
+
+  function handleCompleteTodo(index) {
+    const newCompletedTodos = [...completedTodos];
+
+    newCompletedTodos.splice(index, 1);
+    setCompletedTodos(newCompletedTodos);
   }
 
   function handleDeleteTodo(index) {
@@ -92,7 +99,6 @@ export default function App() {
         <>
           <AddTodo error={isAddError} action={handleAddTodo} />
 
-          {/* Display message if you have no todos */}
           {todos.length === 0 ? (
             messages[Math.floor(Math.random() * messages.length)]
           ) : (
@@ -100,7 +106,20 @@ export default function App() {
               {/* <p>Current Todos</p> */}
               <ul className="list-unstyled">
                 {todos.map((todo, index) => (
-                  <TodoItem key={index} index={index} title={todo.title} completed={todo.completed} onClick={handleDeleteTodo} />
+                  <TodoItem key={index} index={index} title={todo.title} completed={todo.completed} onClick={[handleCompleteTodo, handleDeleteTodo]} />
+                ))}
+              </ul>
+            </>
+          )}
+
+          {completedTodos.length === 0 ? (
+            messages[Math.floor(Math.random() * messages.length)]
+          ) : (
+            <>
+              <p>Completed</p>
+              <ul className="list-unstyled">
+                {completedTodos.map((todo, index) => (
+                  <TodoItem key={index} index={index} title={todo.title} completed={todo.completed} onClick={[handleCompleteTodo, handleDeleteTodo]} />
                 ))}
               </ul>
             </>

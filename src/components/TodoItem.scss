@@ -1,24 +1,37 @@
 @import '../scss/variables.scss';
 
 .TodoItem {
-  border: 1px solid $lite;
+  border: 2px solid #cccccc;
   border-radius: $radius;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
-
-  &:hover {
-    background-color: #f5f5f5;
-  }
+  padding: $unit;
 
   & + & {
-    margin-top: .5rem;
+    margin-top: 1rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    margin: 0;
+    padding-right: $unit;
+    width: calc(100% - 90px);
+  }
+
+  .nav {
+    width: 90px;
+  }
+
+  .btn {
+    background-color: $lite;
+    border: 1px solid #cccccc;
+  }
+  .btn + .btn {
+    margin-left: 6px;
   }
 }
 
 .delete {
-  transform: translate3d(0,2%,0);
-
   &:focus svg,
   &:hover svg {
     fill: $carrot;
