@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import './App.scss';
+import './scss/App.scss';
 
 export default function App() {
   const [todos, setTodos] = useState([]);
-  const [isLoading, setIsLoading] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const data = localStorage.getItem('todoList');
+    const fetchData = async () => {
+      const data = await localStorage.getItem('todoList');
 
-    if (!data) {
-      localStorage.setItem('todoList', JSON.stringify(todos))
-    } else {
-      const newTodos = JSON.parse(data);
-      setTodos(newTodos);
+      if (!data) {
+        //if data doesn't exist, create a object and set it on localStorage
+        localStorage.setItem('todoList', JSON.stringify(todos))
+      } else {
+        //data stored returns as string, parse it to become readable
+        const newTodos = JSON.parse(data);
+        //set our state 
+        setTodos(newTodos);
+      }
+
+      //turn off loader
+      setIsLoading(false);
     }
-
-    setIsLoading(false)
+    
+    fetchData();
   }, [])
 
   function handleAddTodo(event) {
@@ -54,7 +62,6 @@ export default function App() {
       }
     })
 
-    // newTodos.splice(index, 1);
     setTodos(newTodos);
     localStorage.setItem('todoList', JSON.stringify(newTodos))
   }
@@ -74,6 +81,7 @@ export default function App() {
             </form>
           </header>
 
+          {/* Current Todos */}
           {todos.filter((todo) => !todo.completed).length < 1 ? (
             <p>No todo items.</p>
           ) : (
@@ -84,7 +92,7 @@ export default function App() {
               </header>
               <ul className="list-unstyled">
                 {todos.filter(todo => !todo.completed).map((todo, index) => (
-                  <li key={index} data-index={index} className="TodoItem">
+                  <li key={index} data-index={index} data-id={todo.id} className="TodoItem">
                     <span className="TodoItem-title">{todo.title}</span>
                     <nav className="TodoItem-nav">
                       <button onClick={() => handleTodoStatus(todo, index)} className="TodoItem-btn btn" title="Complete todo"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg></button>
@@ -96,6 +104,7 @@ export default function App() {
             </>
           )}
           
+          {/* Completed Todos */}
           {todos.filter((todo) => todo.completed).length < 1 ? (
             ''
           ) : (
@@ -106,7 +115,7 @@ export default function App() {
               </header>
               <ul className="list-unstyled">
                 {todos.filter(todo => todo.completed).map((todo, index) => (
-                  <li key={index} data-index={index} className="TodoItem TodoItem--completed">
+                  <li key={todo.id} data-index={index} data-id={todo.id} className="TodoItem TodoItem--completed">
                   <strike className="TodoItem-title">{todo.title}</strike>
                   <nav className="TodoItem-nav">
                     <button onClick={() => handleTodoStatus(todo, index)} className="TodoItem-btn btn" title="Undo todo"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/></svg></button> 
