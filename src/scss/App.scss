@@ -83,6 +83,11 @@ button {
   align-items: center;
   display: flex;
   justify-content: space-between;
+
+  span {
+    color: $mid;
+    font-size: .85rem;
+  }
 }
 
 .App-title {
@@ -97,10 +102,6 @@ button {
 
 .App-subtitle {
   margin: 0;
-}
-
-.App-info {
-  font-size: .85rem;
 }
 
 .form-control {

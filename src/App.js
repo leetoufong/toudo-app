@@ -88,7 +88,7 @@ export default function App() {
             <>
               <header className="App-subheader">
                 <h2 className="App-subtitle">Current Todos:</h2>
-                <span className="App-info">{todos.filter(todo => !todo.completed).length} Item(s)</span>
+                <span>{todos.filter(todo => !todo.completed).length} Item(s)</span>
               </header>
               <ul className="list-unstyled">
                 {todos.filter(todo => !todo.completed).map((todo, index) => (
@@ -111,7 +111,7 @@ export default function App() {
             <>
               <header className="App-subheader">
                 <h2 className="App-subtitle">Completed Todos:</h2>
-                <span className="App-info">{todos.filter(todo => todo.completed).length} Item(s)</span>
+                <span>{todos.filter(todo => todo.completed).length} Item(s)</span>
               </header>
               <ul className="list-unstyled">
                 {todos.filter(todo => todo.completed).map((todo, index) => (
