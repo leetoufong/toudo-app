@@ -27,10 +27,6 @@ body {
   }
 }
 
-ul {
-  padding-left: 18px;
-}
-
 button {
   background-color: transparent;
   border: none;
@@ -48,9 +44,16 @@ button {
   background-color: $white;
   border-radius: $radius;
   box-shadow: 1px 5px 16px rgba(0,0,0,.25);
-  margin: $unit * 3;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  max-width: 700px;
   padding: $unit * 2;
-  width: 700px;
+  width: 90%;
+
+  @media screen and (min-width: 820px) {
+    width: 100%;
+  }
 }
 
 .input-control {
@@ -68,5 +71,60 @@ button {
 
   svg {
     fill: $dark;
+  }
+}
+
+.AddTodo {
+  margin-bottom: $unit*2;
+
+  @media screen and (min-width: 820px) {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  label + input {
+    margin-left: 8px;
+  }
+
+  input + button {
+    margin-left: 4px;
+  }
+}
+
+.TodoItem {
+  align-items: center;
+  border: 2px solid #cccccc;
+  border-radius: $radius;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+
+  @media screen and (min-width: 820px) {
+    padding: $unit;
+  }
+
+  & + & {
+    margin-top: 1rem;
+  }
+}
+
+.TodoItem-title {
+  font-size: 1rem;
+  margin: 0;
+  padding-right: $unit;
+  width: calc(100% - 90px);
+}
+
+.TodoItem-nav {
+  width: 90px;
+}
+
+.TodoItem-btn {
+  background-color: $lite;
+  border: 1px solid #cccccc;
+
+  & + & {
+    margin-left: 6px;
   }
 }
