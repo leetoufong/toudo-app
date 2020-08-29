@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './scss/App.scss';
+import AddTodo from './components/AddTodo';
+import './App.scss';
 
 export default function App() {
   const [todos, setTodos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
+  useEffect((todos) => {
     const fetchData = async () => {
       const data = await localStorage.getItem('todoList');
 
@@ -40,7 +41,7 @@ export default function App() {
     }
   }
 
-  function handleTodoStatus(item, index) {
+  function handleTodoStatus(item) {
     const newTodos = [...todos];
     
     if (!item.completed) {
@@ -50,10 +51,10 @@ export default function App() {
     }
 
     setTodos(newTodos);
-    localStorage.setItem('todoList', JSON.stringify(newTodos))
+    localStorage.setItem('todoList', JSON.stringify(newTodos));
   }
 
-  function handleDeleteTodo(item, index) {
+  function handleDeleteTodo(item) {
     const newTodos = [...todos];
 
     newTodos.forEach((todo, i) => {
@@ -74,11 +75,7 @@ export default function App() {
         <>
           <header className="App-header">
             <h1 className="App-title">Todo App</h1>
-            <form onSubmit={handleAddTodo} className="AddTodo form">
-              <label htmlFor="add-todo" className="form-label">Add a todo:</label>
-              <input type="text" id="add-todo" className="form-control" />
-              <button className="AddTodo-btn btn" title="Add a todo"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>
-            </form>
+            <AddTodo handleAddTodo={handleAddTodo} />
           </header>
 
           {/* Current Todos */}

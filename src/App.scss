@@ -120,9 +120,11 @@ button {
   display: flex;
   height: $height;
   justify-content: center;
+  outline: none;
   padding: 2px 6px;
 
-  &:focus {
+  &:focus,
+  &:hover {
     border-color: $ocean;
   }
 
@@ -208,9 +210,5 @@ button {
     display: block;
     height: 100%;
     width: 100%;
-  }
-  &:focus svg,
-  &:hover svg {
-    fill: $ocean;
   }
 }
