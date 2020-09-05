@@ -7,13 +7,15 @@ export default function App() {
   const [todos, setTodos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect((todos) => {
+  useEffect(() => {
+    setIsLoading(true);
+
     const fetchData = async () => {
       const data = await localStorage.getItem('todoList');
 
       if (!data) {
         //if data doesn't exist, create a object and set it on localStorage
-        localStorage.setItem('todoList', JSON.stringify(todos))
+        localStorage.setItem('todoList', JSON.stringify([]))
       } else {
         //data stored returns as string, parse it to become readable
         const newTodos = JSON.parse(data);
@@ -71,7 +73,7 @@ export default function App() {
   return (
     <div className="App">
       {isLoading ? (
-        <p>App loading...</p>
+        <h2 className="App-subtitle">Todo App</h2>
       ) : (
         <>
           <header className="App-header">
