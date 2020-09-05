@@ -2,11 +2,9 @@ import React, {useState} from 'react';
 import './Button.scss';
 
 export default function Button(props) {
-  const [variant] = useState(props.variant);
-  const [title] = useState(props.title);
-  const [event] = useState(props.event);
+  const {onClick, variant, title} = props;
 
   return (
-    <button onClick={event} className={`${variant}-btn btn`} title={title}>{props.children}</button>
+    <button onClick={onClick} className={variant ? `${variant}-btn btn` : 'btn'} title={title}>{props.children}</button>
   )
 }
