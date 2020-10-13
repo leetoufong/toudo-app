@@ -6,6 +6,7 @@ import './App.scss';
 export default function App() {
   const [todos, setTodos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -37,10 +38,18 @@ export default function App() {
 
     //validate text input
     if (input.value.length > 0) {
+      if (isInvalid) {
+        input.classList.remove('is-invalid');
+        setIsInvalid(false);
+      }
+
       newTodos.push({id: Date.now(), title: input.value, complete: false});
       setTodos(newTodos)
       localStorage.setItem('todoList', JSON.stringify(newTodos))
       input.value = '';
+    } else {
+      input.classList.add('is-invalid');
+      setIsInvalid(true);
     }
   }
 
@@ -78,12 +87,12 @@ export default function App() {
         <>
           <header className="App-header">
             <h1 className="App-title">Todo App</h1>
-            <AddTodo handleAddTodo={handleAddTodo} />
+            <AddTodo isInvalid={isInvalid} handleAddTodo={handleAddTodo} />
           </header>
 
           {/* Current Todos */}
           {todos.filter((todo) => !todo.completed).length < 1 ? (
-            <p>No todo items.</p>
+            <p>No todo items. You must not be busy.</p>
           ) : (
             <>
               <header className="App-subheader">

@@ -1,0 +1,39 @@
+@import '../variables.scss';
+
+.AddTodo {
+  @media screen and (max-width: 340px) {
+    padding: $unit;
+  }
+
+  .form-group {
+    align-items: center;
+    display: flex;
+  }
+
+  .form-label + .form-control {
+    margin-left: $unit/4;
+  }
+
+  .form-control + .AddTodo-btn {
+    margin-left: $unit/4;
+  }
+}
+
+.AddTodo-btn {
+  &:focus,
+  &:hover {
+    border-color: $ocean;
+  }
+  &:focus svg,
+  &:hover svg {
+    fill: $dark;
+  }
+}
+
+.AddTodo-msg {
+  color: $alert;
+  display: block;
+  font-size: smaller;
+  margin-top: $unit/4;
+  position: absolute;
+}
