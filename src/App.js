@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Draggable } from "react-drag-reorder";
 import AddTodo from './components/AddTodo';
 import TodoItem from './components/TodoItem';
 import './App.scss';
@@ -103,44 +102,38 @@ export default function App() {
 
 					<main>
 						{/* Current Todos */}
-						<section className="App-section">
-							{todos.filter((todo) => !todo.completed).length < 1 ? (
-								<p>Currently no todo items. You must not be busy.</p>
-							) : (
-								<div>
-									<header className="App-subheader">
-										<h2 className="App-subtitle">Current Todos:</h2>
-										<span>{todos.filter(todo => !todo.completed).length} item{todos.filter(todo => todo.completed).length > 1 ? `s` : ``}</span>
-									</header>
-									<ul className="list-unstyled">
-										<Draggable>
-											{todos.filter(todo => !todo.completed).map((todo, index) => (
-												<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
-											))}
-										</Draggable>
-									</ul>
-								</div>
-							)}
-						</section>
+						{todos.filter((todo) => !todo.completed).length < 1 ? (
+							<p>Currently no todo items. You must not be busy.</p>
+						) : (
+							<section className="App-section">
+								<header className="App-subheader">
+									<h2 className="App-subtitle">Current Todos:</h2>
+									<span>{todos.filter(todo => !todo.completed).length} item{todos.filter(todo => todo.completed).length > 1 ? `s` : ``}</span>
+								</header>
+								<ul className="list-unstyled">
+									{todos.filter(todo => !todo.completed).map((todo, index) => (
+										<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
+									))}
+								</ul>
+							</section>
+						)}
 
 						{/* Completed Todos */}
-						<section className="App-section">
-							{todos.filter((todo) => todo.completed).length < 1 ? (
-								''
-							) : (
-								<>
-									<header className="App-subheader">
-										<h2 className="App-subtitle">Completed Todos:</h2>
-										<span>{todos.filter(todo => todo.completed).length} item{todos.filter(todo => todo.completed).length > 1 ? `s` : ``}</span>
-									</header>
-									<ul className="list-unstyled">
-										{todos.filter(todo => todo.completed).map((todo, index) => (
-											<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
-										))}
-									</ul>
-								</>
-							)}
-						</section>
+						{todos.filter((todo) => todo.completed).length < 1 ? (
+							''
+						) : (
+							<section className="App-section">
+								<header className="App-subheader">
+									<h2 className="App-subtitle">Completed Todos:</h2>
+									<span>{todos.filter(todo => todo.completed).length} item{todos.filter(todo => todo.completed).length > 1 ? `s` : ``}</span>
+								</header>
+								<ul className="list-unstyled">
+									{todos.filter(todo => todo.completed).map((todo, index) => (
+										<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
+									))}
+								</ul>
+								</section>
+						)}
 					</main>
 				</>
 			)}

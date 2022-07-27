@@ -110,6 +110,7 @@ button {
 
 .App-section {
 	& + & {
+		background-color: #eaeef5;
 		border-top: 1px dashed;
 		border-color: $lite;
 		margin: -$unit*2;

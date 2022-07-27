@@ -20,12 +20,13 @@
 		background-color: $xlite;
 		color: $mid;
 	}
-}
 
-.grabbable {
-	& + & {
-        margin-top: $unit;
-    }
+	// &.grabbable {
+	// 	cursor: grab;
+	// }
+	// &.grabbable:active {
+	// 	cursor: grabbing;
+	// }
 }
 
 .TodoItem-body {
@@ -37,7 +38,8 @@
 	color: $sky;
 	font-size: $unit;
 	font-weight: 700;
-	margin: 0;
+	margin-bottom: $unit/4;
+	margin-top: 0;
 	padding-right: $unit;
 }
 
