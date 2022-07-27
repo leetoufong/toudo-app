@@ -44,8 +44,16 @@ export default function App() {
 				setIsInvalid(false);
 			}
 
-			newTodos.push({ id: Date.now(), title: input.value, completed: false });
+			newTodos.push({
+				id: Date.now(),
+				title: input.value,
+				completed: false,
+				dateAdded: (new Date).toISOString(),
+				dateCompleted: null
+			});
+
 			setTodos(newTodos)
+
 			localStorage.setItem('todoList', JSON.stringify(newTodos))
 			input.value = '';
 		} else {
@@ -59,8 +67,10 @@ export default function App() {
 
 		if (!item.completed) {
 			item.completed = true;
+			item.dateCompleted = new Date().toISOString();
 		} else {
 			item.completed = false;
+			item.dateCompleted = null;
 		}
 
 		setTodos(newTodos);
@@ -91,39 +101,45 @@ export default function App() {
 						<AddTodo isInvalid={isInvalid} handleAddTodo={handleAddTodo} />
 					</header>
 
-					{/* Current Todos */}
-					{todos.filter((todo) => !todo.completed).length < 1 ? (
-						<p>No todo items. You must not be busy.</p>
-					) : (
-						<>
-							<header className="App-subheader">
-								<h2 className="App-subtitle">Current Todos:</h2>
-								<span>{todos.filter(todo => !todo.completed).length} Item(s)</span>
-							</header>
-							<ul className="list-unstyled">
-								{todos.filter(todo => !todo.completed).map((todo, index) => (
-									<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
-								))}
-							</ul>
-						</>
-					)}
+					<main>
+						{/* Current Todos */}
+						<section className="App-section">
+							{todos.filter((todo) => !todo.completed).length < 1 ? (
+								<p>Currently no todo items. You must not be busy.</p>
+							) : (
+								<div>
+									<header className="App-subheader">
+										<h2 className="App-subtitle">Current Todos:</h2>
+										<span>{todos.filter(todo => !todo.completed).length} item{todos.filter(todo => todo.completed).length > 1 ? `s` : ``}</span>
+									</header>
+									<ul className="list-unstyled">
+										{todos.filter(todo => !todo.completed).map((todo, index) => (
+											<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
+										))}
+									</ul>
+								</div>
+							)}
+						</section>
 
-					{/* Completed Todos */}
-					{todos.filter((todo) => todo.completed).length < 1 ? (
-						''
-					) : (
-						<>
-							<header className="App-subheader">
-								<h2 className="App-subtitle">Completed Todos:</h2>
-								<span>{todos.filter(todo => todo.completed).length} Item(s)</span>
-							</header>
-							<ul className="list-unstyled">
-								{todos.filter(todo => todo.completed).map((todo, index) => (
-									<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
-								))}
-							</ul>
-						</>
-					)}
+						{/* Completed Todos */}
+						<section className="App-section">
+							{todos.filter((todo) => todo.completed).length < 1 ? (
+								''
+							) : (
+								<>
+									<header className="App-subheader">
+										<h2 className="App-subtitle">Completed Todos:</h2>
+										<span>{todos.filter(todo => todo.completed).length} item{todos.filter(todo => todo.completed).length > 1 ? `s` : ``}</span>
+									</header>
+									<ul className="list-unstyled">
+										{todos.filter(todo => todo.completed).map((todo, index) => (
+											<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
+										))}
+									</ul>
+								</>
+							)}
+						</section>
+					</main>
 				</>
 			)}
 		</div>

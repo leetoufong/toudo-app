@@ -1,8 +1,10 @@
 @import '../variables.scss';
 
 .AddTodo {
-	@media screen and (max-width: 340px) {
-		padding: $unit;
+	max-width: 320px;
+
+	@media screen and (min-width: 820px) {
+		width: 50%;
 	}
 
 	.form-group {
@@ -12,6 +14,10 @@
 
 	.form-label + .form-control {
 		margin-left: $unit/4;
+	}
+
+	.form-control {
+		width: 100%;
 	}
 
 	.form-control + .AddTodo-btn {

@@ -1,18 +1,42 @@
 @import '../variables.scss';
 
 .TodoItem {
-	&.is-completed {
+    align-items: center;
+    outline: 1px solid $lite;
+    border-radius: $radius;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    @media screen and (min-width: 820px) {
+        padding: $unit;
+    }
+    
+    & + & {
+        margin-top: $unit;
+    }
+
+    &.is-completed {
 		background-color: $xlite;
-		border-color: $xlite;
 		color: $mid;
 	}
 }
 
+.TodoItem-body {
+	display: flex;
+	flex-direction: column;
+}
+
 .TodoItem-title {
+	color: $sky;
 	font-size: $unit;
+	font-weight: 700;
 	margin: 0;
 	padding-right: $unit;
-	width: calc(100% - 84px);
+}
+
+.TodoItem-info {
+	font-size: 80%;
 }
 
 .TodoItem-nav {
