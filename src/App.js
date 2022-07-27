@@ -48,7 +48,7 @@ export default function App() {
 				id: Date.now(),
 				title: input.value,
 				completed: false,
-				dateAdded: (new Date).toISOString(),
+				dateAdded: (new Date()).toISOString(),
 				dateCompleted: null
 			});
 
