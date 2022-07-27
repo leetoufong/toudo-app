@@ -1,40 +1,40 @@
 @import '../variables.scss';
 
 .TodoItem {
-  &.is-completed {
-    background-color: $xlite;
-    border-color: $xlite;
-    color: $mid;
-  }
+	&.is-completed {
+		background-color: $xlite;
+		border-color: $xlite;
+		color: $mid;
+	}
 }
 
 .TodoItem-title {
-  font-size: $unit;
-  margin: 0;
-  padding-right: $unit;
-  width: calc(100% - 84px);
+	font-size: $unit;
+	margin: 0;
+	padding-right: $unit;
+	width: calc(100% - 84px);
 }
 
 .TodoItem-nav {
-  align-items: center;
-  display: flex;
-  justify-content: center;
+	align-items: center;
+	display: flex;
+	justify-content: center;
 }
 
 .TodoItem-btn {
-  background-color: transparent;
-  border-color: transparent;
-  height: 28px;
-  padding: 0;
-  width: 28px;
+	background-color: transparent;
+	border-color: transparent;
+	height: 28px;
+	padding: 0;
+	width: 28px;
 
-  & + & {
-    margin-left: $unit/4;
-  }
+	& + & {
+		margin-left: $unit/4;
+	}
 
-  svg {
-    display: block;
-    height: 100%;
-    width: 100%;
-  }
+	svg {
+		display: block;
+		height: 100%;
+		width: 100%;
+	}
 }

@@ -2,136 +2,136 @@
 @import './variables.scss';
 
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 body {
-  background-color: $sky;
-  color: $dark;
-  display: flex;
-  font-family: 'Roboto', sans-serif;
-  height: 100%;
-  justify-content: center;
-  line-height: 1.45;
-  margin: 0;
+    background-color: $sky;
+    color: $dark;
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    justify-content: center;
+    line-height: 1.45;
+    margin: 0;
 }
 
 @for $i from 0 through 6 {
-  h#{$i} {
-    font-family: 'Roboto Slab', serif;
-  }
+    h#{$i} {
+        font-family: 'Roboto Slab', serif;
+    }
 }
 
 button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
 }
 
 .list-unstyled {
-  list-style-type: none;
-  padding-left: 0;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 #root {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
 .App {
-  background-color: $white;
-  border-radius: $radius;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: $unit;
-  min-height: 100%;
-  padding: $unit;
-  width: calc(100% - 2rem);
+    background-color: $white;
+    border-radius: $radius;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $unit;
+    min-height: 100%;
+    padding: $unit;
+    width: calc(100% - 2rem);
   
-  @media screen and (min-width: 820px) {
-    box-shadow: 1px 5px 16px rgba(0,0,0,.25);
-    margin-top: $unit*3;
-    max-width: 700px;
-    padding: $unit * 2;
-    width: 100%;
-  }
+    @media screen and (min-width: 820px) {
+        box-shadow: 1px 5px 16px rgba(0,0,0,.25);
+        margin-top: $unit*3;
+        max-width: 700px;
+        padding: $unit * 2;
+        width: 100%;
+    }
 
-  :last-child {
-    margin-bottom: 0;
-  }
+    :last-child {
+        margin-bottom: 0;
+    }
 }
 
 .App-header {
-  margin-bottom: $unit*2;
+    margin-bottom: $unit*2;
 
-  @media screen and (min-width: 820px) {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-  }
+    @media screen and (min-width: 820px) {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 .App-subheader {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 
-  span {
-    color: $mid;
-    font-size: .85rem;
-  }
+    span {
+        color: $mid;
+        font-size: .85rem;
+    }
 }
 
 .App-title {
-  color: $sky;
-  margin-bottom: 1rem;
-  margin-top: 0;
+    color: $sky;
+    margin-bottom: 1rem;
+    margin-top: 0;
 
-  @media screen and (min-width: 820px) {
-    margin-bottom: 0;
-  }
+    @media screen and (min-width: 820px) {
+        margin-bottom: 0;
+    }
 }
 
 .App-subtitle {
-  color: $sky;
+    color: $sky;
 }
 
 .App-subtitle {
-  margin: 0;
+    margin: 0;
 }
 
 .form-control {
-  border: 2px solid $lite;
-  border-radius: $radius;
-  height: $height;
-  padding: $unit/4;
+    border: 2px solid $lite;
+    border-radius: $radius;
+    height: $height;
+    padding: $unit/4;
 }
 
 .TodoItem {
-  align-items: center;
-  border: 2px solid $lite;
-  border-radius: $radius;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
+    align-items: center;
+    border: 2px solid $lite;
+    border-radius: $radius;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
 
-  @media screen and (min-width: 820px) {
-    padding: $unit;
-  }
-  
-  & + & {
-    margin-top: $unit/2;
-  }
+    @media screen and (min-width: 820px) {
+        padding: $unit;
+    }
+    
+    & + & {
+        margin-top: $unit/2;
+    }
 
-  &--completed {
-    background-color: $xlite;
-  }
+    &--completed {
+        background-color: $xlite;
+    }
 }
