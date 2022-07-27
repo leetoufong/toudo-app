@@ -22,6 +22,12 @@
 	}
 }
 
+.grabbable {
+	& + & {
+        margin-top: $unit;
+    }
+}
+
 .TodoItem-body {
 	display: flex;
 	flex-direction: column;

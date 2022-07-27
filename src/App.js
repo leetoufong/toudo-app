@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Draggable } from "react-drag-reorder";
 import AddTodo from './components/AddTodo';
 import TodoItem from './components/TodoItem';
-import Button from './components/Button';
 import './App.scss';
 
 export default function App() {
@@ -113,9 +113,11 @@ export default function App() {
 										<span>{todos.filter(todo => !todo.completed).length} item{todos.filter(todo => todo.completed).length > 1 ? `s` : ``}</span>
 									</header>
 									<ul className="list-unstyled">
-										{todos.filter(todo => !todo.completed).map((todo, index) => (
-											<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
-										))}
+										<Draggable>
+											{todos.filter(todo => !todo.completed).map((todo, index) => (
+												<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
+											))}
+										</Draggable>
 									</ul>
 								</div>
 							)}
