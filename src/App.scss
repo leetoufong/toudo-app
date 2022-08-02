@@ -113,10 +113,17 @@ button {
 		background-color: #eaeef5;
 		border-top: 1px dashed;
 		border-color: $lite;
-		margin: -$unit*2;
+		margin: -$unit;
 		margin-top: $unit*2;
-		padding: $unit*2;
+		padding: $unit;
 		padding-top: $unit;
+
+        @media screen and (min-width: 820px) {
+            margin: -$unit*2;
+            margin-top: $unit*2;
+            padding: $unit*2;
+            padding-top: $unit;
+        }
 	}
 }
 
