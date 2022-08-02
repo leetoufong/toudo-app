@@ -29,7 +29,7 @@ export default function App() {
 		}
 
 		fetchData();
-	}, [])
+	}, []);
 
 	function handleAddTodo(event) {
 		event.preventDefault();
@@ -132,7 +132,7 @@ export default function App() {
 										<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
 									))}
 								</ul>
-								</section>
+							</section>
 						)}
 					</main>
 				</>
