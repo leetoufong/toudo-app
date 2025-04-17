@@ -43,7 +43,7 @@ export default function App() {
 				setIsInvalid(false);
 			}
 
-			newTodos.push({
+			newTodos.unshift({
 				id: Date.now(),
 				title: input.value,
 				completed: false,
