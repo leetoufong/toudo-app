@@ -53,12 +53,21 @@ export default function App() {
 
 			setTodos(newTodos)
 
-			localStorage.setItem('todoList', JSON.stringify(newTodos))
+			localStorage.setItem('todoList', JSON.stringify(newTodos));
 			input.value = '';
 		} else {
 			input.classList.add('is-invalid');
 			setIsInvalid(true);
 		}
+	}
+
+	function handleEditTodo(event, item) {
+		const newTodos = [...todos];
+		const targetItem = newTodos.filter((todo) => todo === item);
+
+		targetItem[0].title = event.target.value
+		setTodos(newTodos);
+		localStorage.setItem('todoList', JSON.stringify(newTodos));
 	}
 
 	function handleTodoStatus(item) {
@@ -112,7 +121,7 @@ export default function App() {
 								</header>
 								<ul className="list-unstyled">
 									{todos.filter(todo => !todo.completed).map((todo, index) => (
-										<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
+										<TodoItem key={index} handleEditTodo={handleEditTodo} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
 									))}
 								</ul>
 							</section>

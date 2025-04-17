@@ -16,22 +16,22 @@
         margin-top: $unit;
     }
 
-    &.is-completed {
+    &.is-complete {
 		background-color: $xlite;
 		color: $mid;
 	}
-
-	// &.grabbable {
-	// 	cursor: grab;
-	// }
-	// &.grabbable:active {
-	// 	cursor: grabbing;
-	// }
 }
 
 .TodoItem-body {
 	display: flex;
-	flex-direction: column;
+
+	.is-complete & {
+		flex-direction: column;
+	}
+
+	button {
+		margin-left: $unit/3;
+	}
 }
 
 .TodoItem-title {
@@ -40,7 +40,7 @@
 	font-weight: 700;
 	margin-bottom: $unit/4;
 	margin-top: 0;
-	padding-right: $unit;
+	padding-right: $unit/3;
 }
 
 .TodoItem-info {
@@ -51,6 +51,10 @@
 	align-items: center;
 	display: flex;
 	justify-content: center;
+}
+
+.TodoItem-utils {
+	color: #555;
 }
 
 .TodoItem-btn {
@@ -68,5 +72,10 @@
 		display: block;
 		height: 100%;
 		width: 100%;
+	}
+
+	&[disabled] {
+		opacity: 0.35;
+		pointer-events: none;
 	}
 }
