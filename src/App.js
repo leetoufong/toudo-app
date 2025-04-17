@@ -92,11 +92,11 @@ export default function App() {
 	return (
 		<div className="App">
 			{isLoading ? (
-				<h2 className="App-subtitle">Todo App</h2>
+				<h1 className="App-subtitle">Toudo App</h1>
 			) : (
 				<>
 					<header className="App-header">
-						<h1 className="App-title">Todo App</h1>
+						<h1 className="App-title">Toudo App</h1>
 						<AddTodo isInvalid={isInvalid} handleAddTodo={handleAddTodo} />
 					</header>
 
