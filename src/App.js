@@ -116,7 +116,7 @@ export default function App() {
 						) : (
 							<section className="App-section">
 								<header className="App-subheader">
-									<h2 className="App-subtitle">Current Todos:</h2>
+									<h2 className="App-subtitle">Current Tasks:</h2>
 									<span>{todos.filter(todo => !todo.completed).length} item{todos.filter(todo => todo.completed).length > 1 ? `s` : ``}</span>
 								</header>
 								<ul className="list-unstyled">
@@ -133,7 +133,7 @@ export default function App() {
 						) : (
 							<section className="App-section">
 								<header className="App-subheader">
-									<h2 className="App-subtitle">Completed Todos:</h2>
+									<h2 className="App-subtitle">Completed Tasks:</h2>
 									<span>{todos.filter(todo => todo.completed).length} item{todos.filter(todo => todo.completed).length > 1 ? `s` : ``}</span>
 								</header>
 								<ul className="list-unstyled">
