@@ -22,6 +22,12 @@ body {
     margin: 0;
 }
 
+#root {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 @for $i from 0 through 6 {
     h#{$i} {
         font-family: 'Roboto Slab', serif;
@@ -49,15 +55,14 @@ button {
 .App {
     background-color: $white;
     border-radius: $radius;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: $unit;
+    margin: $unit*2;
     min-height: 100%;
     padding: $unit;
     width: calc(100% - 2rem);
   
     @media screen and (min-width: 820px) {
         box-shadow: 1px 5px 16px rgba(0,0,0,.25);
+        margin-bottom: $unit*3;
         margin-top: $unit*3;
         max-width: 700px;
         padding: $unit * 2;
