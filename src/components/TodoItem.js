@@ -1,13 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Button from '../components/Button';
 import './TodoItem.scss';
 
 export default function TodoItem(props) {
 	const { todo, handleEditTodo, handleTodoStatus, handleDeleteTodo } = props;
 
-	const [dateAdded] = useState(handleDateConversion(todo.dateAdded));
-	const [dateCompleted] = useState(todo.dateCompleted && handleDateConversion(todo.dateCompleted));
+	const [dateAdded] = useState(handleDateConversion(todo?.dateAdded));
+	const [dateCompleted] = useState(todo?.dateCompleted && handleDateConversion(todo?.dateCompleted));
 	const [editMode, setEditMode] = useState(false);
+	const todoInput = useRef(null);
+
+	useEffect(() => {
+		if (editMode) {
+			todoInput.current.focus();
+			todoInput.current.select();
+
+			window.addEventListener('keypress', (event) => {
+				if (event.key === 'Enter') {
+					setEditMode(false);
+					handleEditTodo(event, todo);
+				}
+			})
+		}
+	}, [editMode])
 
 	function handleDateConversion(date) {
 		const dateArray = date.split('T')[0].split('-');
@@ -21,7 +36,7 @@ export default function TodoItem(props) {
 					<>
 						{editMode ? (
 							<>
-								<input className="form-control" type="text" placeholder={todo.title} onChange={(event) => {
+								<input className="form-control" type="text" ref={todoInput} defaultValue={todo.title} onChange={(event) => {
 									handleEditTodo(event, todo);
 								}} />
 								<button className="TodoItem-utils" type="submit" onClick={(event) => {
@@ -34,7 +49,9 @@ export default function TodoItem(props) {
 							<>
 								<h3 className="TodoItem-title">
 									{todo.title}
-									<button className="TodoItem-utils" onClick={() => setEditMode(true)}>
+									<button className="TodoItem-utils" onClick={() => {
+										setEditMode(true);
+									}}>
 										Edit
 									</button>
 								</h3>
