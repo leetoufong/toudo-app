@@ -112,7 +112,7 @@ export default function App() {
 					<main>
 						{/* Current Todos */}
 						{todos.filter((todo) => !todo.completed).length < 1 ? (
-							<p>Currently no todo items. You must not be busy.</p>
+							<p>Currently no to-do items. You must not be busy.</p>
 						) : (
 							<section className="App-section">
 								<header className="App-subheader">
