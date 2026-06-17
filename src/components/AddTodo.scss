@@ -20,8 +20,24 @@
 		width: 100%;
 	}
 
-	.form-control + .AddTodo-btn {
+	.form-control + .AddTodo-btn,
+	.form-wrapper + .AddTodo-btn {
 		margin-left: $unit/4;
+	}
+
+	.form-wrapper {
+		width: 100%;
+
+		&.form-wrapper-has-clear {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+		}
+	}
+
+	.AddTodo-clear {
+		position: absolute;
+		padding: $unit/2;
 	}
 }
 
