@@ -1,4 +1,3 @@
-import React from 'react';
 import './AddTodo.scss';
 
 export default function AddTodo(props) {

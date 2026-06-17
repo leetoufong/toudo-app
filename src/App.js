@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import AddTodo from './components/AddTodo';
 import TodoItem from './components/TodoItem';
 import './App.scss';
