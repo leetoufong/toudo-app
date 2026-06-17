@@ -17,8 +17,7 @@
     }
 
     &.is-complete {
-		background-color: $xlite;
-		color: $mid;
+		background-color: $white;
 	}
 }
 
@@ -54,7 +53,7 @@
 }
 
 .TodoItem-utils {
-	color: #555;
+	color: $dark;
 	font-size: 80%;
 }
 
