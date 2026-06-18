@@ -6,7 +6,6 @@ import './App.scss';
 export default function App() {
 	const [todos, setTodos] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
-	const [isInvalid, setIsInvalid] = useState(false);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -30,36 +29,6 @@ export default function App() {
 
 		fetchData();
 	}, []);
-
-	function handleAddTodo(event) {
-		event.preventDefault();
-		const input = event.target.querySelector('input');
-		const newTodos = [...todos];
-
-		//validate text input
-		if (input.value.length > 0) {
-			if (isInvalid) {
-				input.classList.remove('is-invalid');
-				setIsInvalid(false);
-			}
-
-			newTodos.unshift({
-				id: Date.now(),
-				title: input.value,
-				completed: false,
-				dateAdded: (new Date()).toISOString(),
-				dateCompleted: null
-			});
-
-			setTodos(newTodos)
-
-			localStorage.setItem('todoList', JSON.stringify(newTodos));
-			input.value = '';
-		} else {
-			input.classList.add('is-invalid');
-			setIsInvalid(true);
-		}
-	}
 
 	function handleEditTodo(event, item) {
 		const newTodos = [...todos];
@@ -106,7 +75,7 @@ export default function App() {
 				<>
 					<header className="App-header">
 						<h1 className="App-title">Toudo App</h1>
-						<AddTodo isInvalid={isInvalid} handleAddTodo={handleAddTodo} />
+						<AddTodo todos={todos} setTodos={setTodos} />
 					</header>
 
 					<main>
@@ -121,7 +90,7 @@ export default function App() {
 								</header>
 								<ul className="list-unstyled">
 									{todos.filter(todo => !todo.completed).map((todo, index) => (
-										<TodoItem key={index} handleEditTodo={handleEditTodo} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
+										<TodoItem key={index} todo={todo} handleEditTodo={handleEditTodo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
 									))}
 								</ul>
 							</section>

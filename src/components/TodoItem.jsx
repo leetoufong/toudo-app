@@ -22,7 +22,7 @@ export default function TodoItem(props) {
 				}
 			})
 		}
-	}, [editMode])
+	}, [editMode]);
 
 	function handleDateConversion(date) {
 		const dateArray = date.split('T')[0].split('-');
