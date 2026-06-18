@@ -36,7 +36,8 @@ export default function TodoItem(props) {
 					<>
 						{editMode ? (
 							<>
-								<input className="form-control" type="text" ref={todoInput} defaultValue={todo.title} onChange={(event) => {
+								<label htmlFor={`${todo.title}.replace(/\s+/g, '-').toLowerCase()}-${todo.id}`} className="form-label sr-only">Edit to-do:</label>
+								<input id={`${todo.title}.replace(/\s+/g, '-').toLowerCase()}-${todo.id}`} className="form-control" type="text" ref={todoInput} defaultValue={todo.title} onChange={(event) => {
 									handleEditTodo(event, todo);
 								}} />
 								<button className="TodoItem-utils" type="submit" onClick={(event) => {
