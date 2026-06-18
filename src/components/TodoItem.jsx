@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import Button from '../components/Button';
+import Button from './Button';
 import './TodoItem.scss';
 
 export default function TodoItem(props) {
