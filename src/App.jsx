@@ -77,7 +77,7 @@ export default function App() {
 					<>
 						<Header todos={todos} setTodos={setTodos} />
 
-						<main>
+						<main role="main">
 							{/* Current Todos */}
 							{todos.filter((todo) => !todo.completed).length < 1 ? (
 								<p>Currently no to-do items. You must not be busy.</p>

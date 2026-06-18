@@ -5,7 +5,7 @@ export default function Header(props) {
     const { todos, setTodos } = props;
 
     return (
-        <header className="App-header">
+        <header className="App-header" role="banner">
             <h1 className="App-title">Toudo App</h1>
             <AddTodo todos={todos} setTodos={setTodos} />
         </header>

@@ -5,7 +5,7 @@ export default function Header(props) {
     const { version } = props;
 
     return (
-        <footer>
+        <footer role="contentinfo">
             <small>Version {APP_VERSION}</small>
         </footer>
     )
