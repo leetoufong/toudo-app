@@ -39,9 +39,7 @@ export default function AddTodo(props) {
 	}
 
 	return (
-		<form onSubmit={(event) => {
-			handleAddTodo(event);
-		}} className="AddTodo form">
+		<form onSubmit={handleAddTodo} className="AddTodo form">
 			<label htmlFor="add-todo" className="form-label">Add a to-do:</label>
 			<div className="form-group">
 				<div className="form-wrapper form-wrapper-has-clear">
