@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import AddTodo from './components/AddTodo';
+import Header from './components/Header';
 import TodoItem from './components/TodoItem';
 import './App.scss';
 
@@ -73,10 +73,7 @@ export default function App() {
 				<h1 className="App-subtitle">Toudo App</h1>
 			) : (
 				<>
-					<header className="App-header">
-						<h1 className="App-title">Toudo App</h1>
-						<AddTodo todos={todos} setTodos={setTodos} />
-					</header>
+					<Header todos={todos} setTodos={setTodos} />
 
 					<main>
 						{/* Current Todos */}
