@@ -37,12 +37,8 @@ export default function TodoItem(props) {
 						{editMode ? (
 							<>
 								<label htmlFor={`${todo.title}.replace(/\s+/g, '-').toLowerCase()}-${todo.id}`} className="form-label sr-only">Edit to-do:</label>
-								<input id={`${todo.title}.replace(/\s+/g, '-').toLowerCase()}-${todo.id}`} className="form-control" type="text" ref={todoInput} defaultValue={todo.title} onChange={(event) => {
-									handleEditTodo(event, todo);
-								}} />
-								<button className="TodoItem-utils" type="submit" onClick={(event) => {
-									setEditMode(false);
-								}}>
+								<input id={`${todo.title}.replace(/\s+/g, '-').toLowerCase()}-${todo.id}`} className="form-control" type="text" ref={todoInput} defaultValue={todo.title} onChange={(event) => handleEditTodo(event, todo)} />
+								<button className="TodoItem-utils" type="submit" onClick={() => setEditMode(false)}>
 									Done
 								</button>
 							</>
@@ -50,9 +46,7 @@ export default function TodoItem(props) {
 							<>
 								<h3 className="TodoItem-title">
 									{todo.title}
-									<button className="TodoItem-utils" onClick={() => {
-										setEditMode(true);
-									}}>
+									<button className="TodoItem-utils" onClick={() => setEditMode(true)}>
 										Edit
 									</button>
 								</h3>
