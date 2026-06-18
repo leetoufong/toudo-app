@@ -1,4 +1,5 @@
 import AddTodo from './AddTodo';
+import './Header.scss';
 
 export default function Header(props) {
     const { todos, setTodos } = props;

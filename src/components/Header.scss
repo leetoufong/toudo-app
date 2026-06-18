@@ -1,0 +1,21 @@
+@import '../variables.scss';
+
+.App-header {
+    margin-bottom: $unit*2;
+
+    @media screen and (min-width: 820px) {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.App-title {
+    color: $ocean;
+    margin-bottom: 1rem;
+    margin-top: 0;
+
+    @media screen and (min-width: 820px) {
+        margin-bottom: 0;
+    }
+}
