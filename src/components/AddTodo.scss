@@ -39,14 +39,15 @@
 
 	.AddTodo-clear {
 		align-items: center;
-		border-radius: $radius/2;
+		border-radius: calc($radius/2);
 		display: flex;
 		justify-content: center;
 		position: absolute;
 		right: .5rem;
 		outline: 2px solid transparent;
 
-		&:focus {
+		&:focus,
+		&:hover {
 			outline-color: $ocean;
 		}
 	}

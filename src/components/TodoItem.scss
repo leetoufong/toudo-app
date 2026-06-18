@@ -53,8 +53,15 @@
 }
 
 .TodoItem-utils {
+	border-radius: calc($radius/2);
 	color: $dark;
 	font-size: 80%;
+	outline: 2px solid transparent;
+
+	&:focus,
+	&:hover {
+		outline-color: $ocean;
+	}
 }
 
 .TodoItem-btn {
