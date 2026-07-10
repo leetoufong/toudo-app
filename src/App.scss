@@ -91,7 +91,13 @@ button {
 }
 
 .App-subtitle {
+    align-items: flex-end;
     color: $sky;
+    display: flex;
+
+    .btn-clean {
+        margin-left: calc($unit/2);
+    }
 }
 
 .App-subtitle {

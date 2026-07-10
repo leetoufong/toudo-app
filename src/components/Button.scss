@@ -21,3 +21,13 @@
 		fill: $ocean;
 	}
 }
+
+.btn-clean {
+	background-color: transparent;
+	border: none;
+	padding: 0;
+
+	svg {
+		fill: $ocean;
+	}
+}

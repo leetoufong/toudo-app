@@ -6,15 +6,16 @@
     border-radius: $radius;
     display: flex;
     justify-content: space-between;
+	margin-top: $unit;
     padding: 10px;
 
     @media screen and (min-width: 820px) {
         padding: $unit;
     }
-    
-    & + & {
-        margin-top: $unit;
-    }
+
+	.is-grid & {
+		margin-top: 0;
+	}
 
     &.is-complete {
 		background-color: $white;
