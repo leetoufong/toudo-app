@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import TodoItem from './components/TodoItem';
+import TodosList from './components/TodosList';
+import CompletedList from './components/CompletedList';
 import './App.scss';
 
 export default function App() {
@@ -82,34 +83,14 @@ export default function App() {
 							{todos.filter((todo) => !todo.completed).length < 1 ? (
 								<p>Currently no to-do items. You must not be busy.</p>
 							) : (
-								<section className="App-section">
-									<header className="App-subheader">
-										<h2 className="App-subtitle">Current Tasks:</h2>
-										<span>{todos.filter(todo => !todo.completed).length} item{todos.filter(todo => todo.completed).length > 1 ? `s` : ``}</span>
-									</header>
-									<ul className="list-unstyled">
-										{todos.filter(todo => !todo.completed).map((todo, index) => (
-											<TodoItem key={index} todo={todo} handleEditTodo={handleEditTodo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
-										))}
-									</ul>
-								</section>
+								<TodosList todos={todos} handleEditTodo={handleEditTodo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
 							)}
 
 							{/* Completed Todos */}
 							{todos.filter((todo) => todo.completed).length < 1 ? (
 								''
 							) : (
-								<section className="App-section">
-									<header className="App-subheader">
-										<h2 className="App-subtitle">Completed Tasks:</h2>
-										<span>{todos.filter(todo => todo.completed).length} item{todos.filter(todo => todo.completed).length > 1 ? `s` : ``}</span>
-									</header>
-									<ul className="list-unstyled">
-										{todos.filter(todo => todo.completed).map((todo, index) => (
-											<TodoItem key={index} todo={todo} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
-										))}
-									</ul>
-								</section>
+								<CompletedList todos={todos} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
 							)}
 						</main>
 					</>
