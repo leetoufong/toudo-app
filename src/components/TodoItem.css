@@ -1,16 +1,16 @@
-@import '../variables.scss';
+@import '../variables.css';
 
 .TodoItem {
     align-items: center;
-    outline: 1px solid $lite;
-    border-radius: $radius;
+    outline: 1px solid var(--lite);
+    border-radius: var(--radius);
     display: flex;
     justify-content: space-between;
-	margin-top: $unit;
+	margin-top: var(--unit);
     padding: 10px;
 
     @media screen and (min-width: 820px) {
-        padding: $unit;
+        padding: var(--unit);
     }
 
 	.is-grid & {
@@ -18,7 +18,7 @@
 	}
 
     &.is-complete {
-		background-color: $white;
+		background-color: var(--white);
 	}
 }
 
@@ -30,17 +30,17 @@
 	}
 
 	button {
-		margin-left: calc($unit/3);
+		margin-left: calc(var(--unit)/3);
 	}
 }
 
 .TodoItem-title {
-	color: $sky;
-	font-size: $unit;
+	color: var(--sky);
+	font-size: var(--unit);
 	font-weight: 700;
-	margin-bottom: calc($unit/4);
+	margin-bottom: calc(var(--unit)/4);
 	margin-top: 0;
-	padding-right: calc($unit/3);
+	padding-right: calc(var(--unit)/3);
 }
 
 .TodoItem-info {
@@ -54,14 +54,14 @@
 }
 
 .TodoItem-utils {
-	border-radius: calc($radius/2);
-	color: $dark;
+	border-radius: calc(var(--radius)/2);
+	color: var(--dark);
 	font-size: 80%;
 	outline: 2px solid transparent;
 
 	&:focus,
 	&:hover {
-		outline-color: $ocean;
+		outline-color: var(--ocean);
 	}
 }
 
@@ -73,7 +73,7 @@
 	width: 28px;
 
 	& + & {
-		margin-left: calc($unit/4);
+		margin-left: calc(var(--unit)/4);
 	}
 
 	svg {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TodoItem from './TodoItem';
-import './TodosList.scss';
+import './TodosList.css';
 
 const TodosList = (props) => {
     const { todos, handleEditTodo, handleTodoStatus, handleDeleteTodo } = props;

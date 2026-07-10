@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import './AddTodo.scss';
+import './AddTodo.css';
 
 export default function AddTodo(props) {
 	const { todos, setTodos } = props;

@@ -1,5 +1,5 @@
 import AddTodo from './AddTodo';
-import './Footer.scss';
+import './Footer.css';
 
 export default function Header(props) {
     const { version } = props;

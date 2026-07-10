@@ -1,4 +1,4 @@
-@import '../variables.scss';
+@import '../variables.css';
 
 .AddTodo {
 	max-width: 320px;
@@ -13,17 +13,17 @@
 	}
 
 	.form-label + .form-control {
-		margin-left: calc($unit/4);
+		margin-left: calc(var(--unit)/4);
 	}
 
 	.form-control {
-		height: $height;
+		height: var(--height);
 		width: 100%;
 	}
 
 	.form-control + .AddTodo-btn,
 	.form-wrapper + .AddTodo-btn {
-		margin-left: calc($unit/4);
+		margin-left: calc(var(--unit)/4);
 	}
 
 	.form-wrapper {
@@ -39,7 +39,7 @@
 
 	.AddTodo-clear {
 		align-items: center;
-		border-radius: calc($radius/2);
+		border-radius: calc(var(--radius)/2);
 		display: flex;
 		justify-content: center;
 		position: absolute;
@@ -48,7 +48,7 @@
 
 		&:focus,
 		&:hover {
-			outline-color: $ocean;
+			outline-color: var(--ocean);
 		}
 	}
 }
@@ -56,18 +56,18 @@
 .AddTodo-btn {
 	&:focus,
 	&:hover {
-		border-color: $ocean;
+		border-color: var(--ocean);
 	}
 	&:focus svg,
 	&:hover svg {
-		fill: $dark;
+		fill: var(--dark);
 	}
 }
 
 .AddTodo-msg {
-	color: $alert;
+	color: var(--alert);
 	display: block;
 	font-size: smaller;
-	margin-top: calc($unit/4);
+	margin-top: calc(var(--unit)/4);
 	position: absolute;
 }

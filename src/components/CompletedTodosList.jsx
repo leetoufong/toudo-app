@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import TodoItem from '../components/TodoItem';
+import TodoItem from './TodoItem';
 
-const CompletedList = (props) => {
+const CompletedTodosList = (props) => {
     const { todos, handleTodoStatus, handleDeleteTodo } = props;
     const [grid, setGrid] = useState(false);
 
@@ -32,4 +32,4 @@ const CompletedList = (props) => {
     )
 }
 
-export default CompletedList
+export default CompletedTodosList

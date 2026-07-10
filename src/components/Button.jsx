@@ -1,4 +1,4 @@
-import './Button.scss';
+import './Button.css';
 
 export default function Button(props) {
 	const { onClick, variant, title, disabled, children } = props;

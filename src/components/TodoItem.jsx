@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Button from './Button';
-import './TodoItem.scss';
+import './TodoItem.css';
 
 export default function TodoItem(props) {
 	const { todo, handleEditTodo, handleTodoStatus, handleDeleteTodo } = props;

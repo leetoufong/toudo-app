@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab:400,700&display=swap');
-@import './variables.scss';
+@import './variables.css';
 
 html {
     box-sizing: border-box;
@@ -12,8 +12,8 @@ html {
 }
 
 body {
-    background-color: $sky;
-    color: $dark;
+    background-color: var(--sky);
+    color: var(--dark);
     display: flex;
     font-family: 'Roboto', sans-serif;
     height: 100%;
@@ -29,10 +29,12 @@ body {
     justify-content: center;
 }
 
-@for $i from 0 through 6 {
-    h#{$i} {
-        font-family: 'Roboto Slab', serif;
-    }
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Roboto Slab', serif;
 }
 
 button {
@@ -54,23 +56,23 @@ button {
 }
 
 .App {
-    background-color: $white;
-    border-radius: $radius;
-    margin-bottom: $unit;
-    margin-left: calc($unit*2);
-    margin-right: calc($unit*2);
-    margin-top: calc($unit*2);
+    background-color: var(--white);
+    border-radius: var(--radius);
+    margin-bottom: var(--unit);
+    margin-left: calc(var(--unit)*2);
+    margin-right: calc(var(--unit)*2);
+    margin-top: calc(var(--unit)*2);
     min-height: 100%;
-    padding: $unit;
+    padding: var(--unit);
     width: calc(100% - 2rem);
   
     @media screen and (min-width: 820px) {
         box-shadow: 1px 5px 16px rgba(0,0,0,.25);
-        margin-left: calc($unit*3);
-        margin-right: calc($unit*3);
-        margin-top: calc($unit*3);
+        margin-left: calc(var(--unit)*3);
+        margin-right: calc(var(--unit)*3);
+        margin-top: calc(var(--unit)*3);
         max-width: 700px;
-        padding: $unit * 2;
+        padding: calc(var(--unit) * 2);
         width: 100%;
     }
 
@@ -85,18 +87,18 @@ button {
     justify-content: space-between;
 
     span {
-        color: $mid;
+        color: var(--mid);
         font-size: .85rem;
     }
 }
 
 .App-subtitle {
     align-items: flex-end;
-    color: $sky;
+    color: var(--sky);
     display: flex;
 
     .btn-clean {
-        margin-left: calc($unit/2);
+        margin-left: calc(var(--unit)/2);
     }
 }
 
@@ -108,25 +110,25 @@ button {
 	& + & {
 		background-color: #eaeef5;
 		border-top: 1px dashed;
-		border-color: $lite;
-		margin: -$unit;
-		margin-top: $unit*2;
-		padding: $unit;
-		padding-top: $unit;
+		border-color: var(--lite);
+		margin: calc(-1 * var(--unit));
+		margin-top: calc(var(--unit)*2);
+		padding: calc(var(--unit));
+		padding-top: calc(var(--unit));
 
         @media screen and (min-width: 820px) {
-            margin: -$unit*2;
-            margin-top: $unit*2;
-            padding: $unit*2;
-            padding-top: $unit;
+            margin: calc(-1 * var(--unit)*2);
+            margin-top: calc(var(--unit)*2);
+            padding: calc(var(--unit)*2);
+            padding-top: var(--unit);
         }
 	}
 }
 
 .form-control {
-    border: 2px solid $lite;
-    border-radius: $radius;
-    padding: calc($unit/4);
+    border: 2px solid var(--lite);
+    border-radius: var(--radius);
+    padding: calc(var(--unit)/4);
 }
 
 .sr-only {

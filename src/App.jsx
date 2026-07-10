@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import TodosList from './components/TodosList';
-import CompletedList from './components/CompletedList';
-import './App.scss';
+import CompletedTodosList from './components/CompletedTodosList';
+import './App.css';
 
 export default function App() {
 	const [todos, setTodos] = useState([]);
@@ -90,7 +90,7 @@ export default function App() {
 							{todos.filter((todo) => todo.completed).length < 1 ? (
 								''
 							) : (
-								<CompletedList todos={todos} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
+								<CompletedTodosList todos={todos} handleTodoStatus={handleTodoStatus} handleDeleteTodo={handleDeleteTodo} />
 							)}
 						</main>
 					</>
