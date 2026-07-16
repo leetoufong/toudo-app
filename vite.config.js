@@ -12,6 +12,6 @@ export default defineConfig({
     test: {
         environment: 'jsdom', // Simulates browser environment
         globals: true, // Allows using describe, test, expect without explicit imports
-        setupFiles: './src/test/setup.js', // Global setup file path (use .ts if using TypeScript)
+        setupFiles: './src/setupTests.js', // Global setup file path (use .ts if using TypeScript)
     },
 })

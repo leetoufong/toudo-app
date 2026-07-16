@@ -1,4 +1,3 @@
-// src/components/Greeting.test.jsx
 import { render, screen } from '@testing-library/react';
 import Greeting from './Greeting';
 
